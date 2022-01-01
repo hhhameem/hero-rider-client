@@ -12,7 +12,9 @@ const UserDashboard = () => {
   console.log(userData);
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/get-user?email=${user.email}`)
+      .get(
+        `https://secure-coast-12143.herokuapp.com/get-user?email=${user.email}`
+      )
       .then(function (response) {
         setUserData(response.data);
         console.log(response.data);

@@ -14,13 +14,13 @@ const Dashboard = () => {
     console.log(currentPage, searchText, ageRange);
     let url;
     if (searchText.length > 0) {
-      url = `http://localhost:5000/get-all-user?pageNumber=${currentPage}&&searchText=${searchText}`;
+      url = `https://secure-coast-12143.herokuapp.com/get-all-user?pageNumber=${currentPage}&&searchText=${searchText}`;
       console.log(url);
     } else if (ageRange > "0") {
-      url = `http://localhost:5000/get-all-user?pageNumber=${currentPage}&&ageRange=${ageRange}`;
+      url = `https://secure-coast-12143.herokuapp.com/get-all-user?pageNumber=${currentPage}&&ageRange=${ageRange}`;
       console.log(url);
     } else {
-      url = `http://localhost:5000/get-all-user?pageNumber=${currentPage}`;
+      url = `https://secure-coast-12143.herokuapp.com/get-all-user?pageNumber=${currentPage}`;
       console.log(url);
     }
     axios

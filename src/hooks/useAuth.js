@@ -107,7 +107,7 @@ const useAuth = () => {
     data.type = userType;
     console.log("data before potst", data);
     axios
-      .post("http://localhost:5000/create-user", data)
+      .post("https://secure-coast-12143.herokuapp.com/create-user", data)
       .then(function (response) {
         if (response.data.insertedId) {
           window.alert("Data saved Successfully!!");

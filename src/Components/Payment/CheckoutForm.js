@@ -14,7 +14,9 @@ const CheckoutForm = ({ price }) => {
   useEffect(() => {
     // Create PaymentIntent as soon as the page loads
     axios
-      .post("http://localhost:5000/create-payment-intent", { price })
+      .post("https://secure-coast-12143.herokuapp.com/create-payment-intent", {
+        price,
+      })
       .then(function (response) {
         setClientSecret(response.data.clientSecret);
       })
