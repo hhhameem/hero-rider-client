@@ -20,6 +20,7 @@ const useAuth = () => {
   const [profileImage, setProfileImage] = useState("");
   const [nidImage, setNidImage] = useState("");
   const [submitted, setSubmitted] = useState(false);
+  const [saved, setSaved] = useState(false);
 
   const navigate = useNavigate();
 
@@ -73,7 +74,8 @@ const useAuth = () => {
         navigate("/user-dashboard");
       })
       .catch((error) => {
-        console.log(error);
+        window.alert(error.message);
+        setSubmitted(false);
       });
   };
 
@@ -112,6 +114,7 @@ const useAuth = () => {
         if (response.data.insertedId) {
           window.alert("Data saved Successfully!!");
         }
+        setSaved(!saved);
       })
       .catch(function (error) {
         window.alert(error.message + "Try Again");

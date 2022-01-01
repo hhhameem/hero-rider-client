@@ -7,7 +7,7 @@ const LearningPackage = () => {
     <>
       <h1 className='mt-5'>We Have Two offer for you.</h1>
       <h6 className='mb-5'>You can choose between this two</h6>
-      <div className='col-10 col-md-4 mb-2'>
+      <div className='col-10 col-md-6 mb-2'>
         <div className='card'>
           <div className='card-body'>
             <h5 className='card-title'>Car Driving Teaching</h5>
@@ -25,7 +25,7 @@ const LearningPackage = () => {
           </div>
         </div>
       </div>
-      <div className='col-10 col-md-4'>
+      <div className='col-10 col-md-6'>
         <div className='card'>
           <div className='card-body'>
             <h5 className='card-title'>Bike Driving Teaching</h5>
