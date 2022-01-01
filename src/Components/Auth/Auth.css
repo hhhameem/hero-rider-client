@@ -1,0 +1,14 @@
+.fullHeight {
+  height: 100vh;
+}
+.centerDiv {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.linkContainer {
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
