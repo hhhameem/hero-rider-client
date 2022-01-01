@@ -8,7 +8,7 @@ const Navigation = () => {
   return (
     <Navbar collapseOnSelect expand='md' bg='dark' variant='dark'>
       <Container>
-        <Navbar.Brand>React-Bootstrap</Navbar.Brand>
+        <Navbar.Brand>Hero Rider</Navbar.Brand>
         <Navbar.Collapse id='responsive-navbar-nav'>
           <Nav className='me-auto'></Nav>
           <Nav>
