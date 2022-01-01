@@ -28,7 +28,7 @@ const Dashboard = () => {
       .then(function (response) {
         console.log(response.data);
         setAllUsers(response.data.result);
-        const totalPage = Math.ceil(response.data.totalUsers / 1);
+        const totalPage = Math.ceil(response.data.totalUsers / 10);
         setUserNumber(totalPage);
       })
       .catch(function (error) {

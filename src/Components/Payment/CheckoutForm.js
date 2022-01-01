@@ -104,4 +104,3 @@ const CheckoutForm = ({ price }) => {
 };
 
 export default CheckoutForm;
-<h1>ok</h1>;
