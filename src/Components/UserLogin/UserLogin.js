@@ -1,16 +1,13 @@
 import React from "react";
-import useAuth from "../../hooks/useAuth";
 import { BiLogIn } from "react-icons/bi";
-import "./AdminLogin.css";
+import useAuth from "../../hooks/useAuth";
 
-const AdminLogin = () => {
-  const { adminLogin, handleAdminEmailChange, handleAdminPassChange } =
-    useAuth();
-
+const UserLogin = () => {
+  const { userLogin, handleUserEmailChange, handleUserPassChange } = useAuth();
   return (
     <div className='container fullHeight centerDiv'>
       <div className='col-12 col-md-5 linkContainer box-Shadow'>
-        <h4>Login As An Admin</h4>
+        <h4>Login As An User</h4>
         <form className='formContainer'>
           <div className='form-floating mb-3'>
             <input
@@ -19,7 +16,7 @@ const AdminLogin = () => {
               className='form-control'
               id='floatingInput'
               placeholder='Your Email'
-              onBlur={(e) => handleAdminEmailChange(e)}
+              onBlur={handleUserEmailChange}
             />
             <label htmlFor='floatingInput'>Email address</label>
           </div>
@@ -30,7 +27,7 @@ const AdminLogin = () => {
               className='form-control'
               id='floatingPassword'
               placeholder='Your Password'
-              onBlur={(e) => handleAdminPassChange(e)}
+              onBlur={handleUserPassChange}
             />
             <label htmlFor='floatingPassword'>Password</label>
           </div>
@@ -38,7 +35,7 @@ const AdminLogin = () => {
             <button
               className='btn btn-primary'
               type='button'
-              onClick={adminLogin}
+              onClick={userLogin}
             >
               <BiLogIn style={{ marginTop: "-3px" }} /> Log In
             </button>
@@ -49,4 +46,4 @@ const AdminLogin = () => {
   );
 };
 
-export default AdminLogin;
+export default UserLogin;

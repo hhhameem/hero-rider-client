@@ -17,8 +17,10 @@ const Payment = () => {
     price = 200;
   }
   return (
-    <div>
-      <h1>Pay for: {serviceId}</h1>
+    <div className='container pt-5' style={{ height: "100vh" }}>
+      <h1 className='mb-4'>
+        Pay ${price} for: {serviceId === "1" ? "Car Lesson" : "Bike Lesson"}
+      </h1>
       <Elements stripe={stripePromise}>
         <CheckoutForm price={price} />
       </Elements>

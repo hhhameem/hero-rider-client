@@ -1,17 +1,30 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import Navigation from "../Navigation/Navigation";
+import SearchBar from "../SearchBar/SearchBar";
 
 const Dashboard = () => {
   const [allUsers, setAllUsers] = useState([]);
   const [userNumber, setUserNumber] = useState(0);
   const [currentPage, setCurrentPage] = useState(0);
-  const [searchText, setSearchText] = useState('');
-  const [ageRange, setAgeRange] = useState(0);
+  const [searchText, setSearchText] = useState("");
+  const [ageRange, setAgeRange] = useState("0");
 
   useEffect(() => {
+    console.log(currentPage, searchText, ageRange);
+    let url;
+    if (searchText.length > 0) {
+      url = `http://localhost:5000/get-all-user?pageNumber=${currentPage}&&searchText=${searchText}`;
+      console.log(url);
+    } else if (ageRange > "0") {
+      url = `http://localhost:5000/get-all-user?pageNumber=${currentPage}&&ageRange=${ageRange}`;
+      console.log(url);
+    } else {
+      url = `http://localhost:5000/get-all-user?pageNumber=${currentPage}`;
+      console.log(url);
+    }
     axios
-      .get(`http://localhost:5000/get-all-user?pageNumber=${currentPage}`)
+      .get(url)
       .then(function (response) {
         console.log(response.data);
         setAllUsers(response.data.result);
@@ -21,52 +34,18 @@ const Dashboard = () => {
       .catch(function (error) {
         console.log(error);
       });
-  }, [currentPage]);
-
-  const handle
+  }, [currentPage, searchText, ageRange]);
 
   return (
     <div>
       <Navigation></Navigation>
       <h1>Registered Users List</h1>
       <div className=' container'>
-        <div className='row justify-content-center'>
-          <div className='col-12 col-md-6'>
-            <div className='row'>
-              <div class='col-auto'>
-                <input
-                  type='text'
-                  class='form-control'
-                  id='searchInput'
-                  placeholder='Name, email or password'
-                />
-              </div>
-              <div class='col-auto'>
-                <button type='button' class='btn btn-primary mb-3'>
-                  Search
-                </button>
-              </div>
-            </div>
-          </div>
-          <div className='col-12 col-md-6'>
-            <div className='row'>
-              <div class='col-auto'>
-                <select class='form-select' aria-label='Default select example'>
-                  <option value='0'>Select Age range</option>
-                  <option value='1'>18-25 Years of Age</option>
-                  <option value='2'>35-30 Years of Age</option>
-                  <option value='3'>30+ Years of Age</option>
-                </select>
-              </div>
-              <div class='col-auto'>
-                <button type='button' class='btn btn-primary mb-3'>
-                  Filter by Age
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-
+        <SearchBar
+          setSearchText={setSearchText}
+          setCurrentPage={setCurrentPage}
+          setAgeRange={setAgeRange}
+        ></SearchBar>
         <div className='table-responsive'>
           <table className='table table-hover table-dark'>
             <thead>
@@ -78,6 +57,9 @@ const Dashboard = () => {
                 <th scope='col'>Age</th>
                 <th scope='col'>Address</th>
                 <th scope='col'>User Type</th>
+                <th scope='col'>Profile Image</th>
+                <th scope='col'>NID Image</th>
+                <th scope='col'>DL Image</th>
               </tr>
             </thead>
             <tbody>
@@ -99,6 +81,25 @@ const Dashboard = () => {
                   <td>{user.age}</td>
                   <td>{user.address}</td>
                   <td>{user.type}</td>
+                  <td>
+                    <a href={user.profilePicture} style={{ color: "white" }}>
+                      {user.profilePicture.slice(0, 10)}
+                    </a>
+                  </td>
+                  <td>
+                    <a href={user.nidImage} style={{ color: "white" }}>
+                      {user.nidImage.slice(0, 10)}
+                    </a>
+                  </td>
+                  <td>
+                    {user?.dlImage ? (
+                      <a href={user.dlImage} style={{ color: "white" }}>
+                        {user.dlImage.slice(0, 10)}
+                      </a>
+                    ) : (
+                      "Not applicable"
+                    )}
+                  </td>
                 </tr>
               ))}
             </tbody>

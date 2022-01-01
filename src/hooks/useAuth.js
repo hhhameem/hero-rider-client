@@ -5,6 +5,7 @@ import {
   createUserWithEmailAndPassword,
   onAuthStateChanged,
   signOut,
+  signInWithEmailAndPassword,
 } from "firebase/auth";
 import axios from "axios";
 
@@ -13,6 +14,8 @@ const useAuth = () => {
   const [user, setUser] = useState({});
   const [adminEmail, setAdminEmail] = useState(null);
   const [adminPass, setAdminPass] = useState(null);
+  const [userEmail, setUserEmail] = useState(null);
+  const [userPass, setUserPass] = useState(null);
   const [license, setLicense] = useState("");
   const [profileImage, setProfileImage] = useState("");
   const [nidImage, setNidImage] = useState("");
@@ -28,6 +31,12 @@ const useAuth = () => {
   const handleAdminPassChange = (e) => {
     setAdminPass(e.target.value);
   };
+  const handleUserEmailChange = (e) => {
+    setUserEmail(e.target.value);
+  };
+  const handleUserPassChange = (e) => {
+    setUserPass(e.target.value);
+  };
 
   const adminLogin = () => {
     if (adminEmail === adminCredential[0] && adminPass === adminCredential[1]) {
@@ -37,13 +46,29 @@ const useAuth = () => {
       window.alert("Please use correct email or pass");
     }
   };
+  const adminLogOut = () => {
+    localStorage.removeItem("adminLoggedIn");
+  };
+
+  const userLogin = () => {
+    console.log("accounting creating");
+    signInWithEmailAndPassword(auth, userEmail, userPass)
+      .then((userCredential) => {
+        setUser(userCredential.user);
+        localStorage.setItem("userLoggedIn", "true");
+        navigate("/user-dashboard");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
   const accountCreate = (email, pass, data, userType) => {
     console.log("accounting creating");
     createUserWithEmailAndPassword(auth, email, pass)
       .then((userCredential) => {
         setUser(userCredential.user);
-        localStorage.setItem("userLoggedIn", userType);
+        localStorage.setItem("userLoggedIn", "true");
         SaveUserData(data, userType);
         navigate("/user-dashboard");
       })
@@ -98,7 +123,10 @@ const useAuth = () => {
     var formData = new FormData();
     formData.append("image", img);
     axios
-      .post(`https://api.imgbb.com/1/upload?&key=API_KEY`, formData)
+      .post(
+        `https://api.imgbb.com/1/upload?&key=87eb0fb018a799677f5c87eac15c66fa`,
+        formData
+      )
       .then(function (response) {
         if (response.data.data.url) {
           console.log("image uploaded");
@@ -127,7 +155,15 @@ const useAuth = () => {
     upload,
     logOut,
     accountCreate,
+    userEmail,
+    setUserEmail,
+    userPass,
+    setUserPass,
+    handleUserEmailChange,
+    handleUserPassChange,
+    userLogin,
     adminLogin,
+    adminLogOut,
     handleAdminEmailChange,
     handleAdminPassChange,
   };

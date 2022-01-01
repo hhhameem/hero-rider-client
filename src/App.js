@@ -10,6 +10,8 @@ import ContextProvider from "./ContextProvider/ContextProvider";
 import PrivateRoute from "./PrivateRoute/PrivateRoute";
 import UserDashboard from "./Components/UserDashboard/UserDashboard";
 import Payment from "./Components/Payment/Payment";
+import UserLogin from "./Components/UserLogin/UserLogin";
+import PrivateUserRoute from "./PrivateUserRoute/PrivateUserRoute";
 
 initFirebase();
 function App() {
@@ -19,7 +21,8 @@ function App() {
         <ContextProvider>
           <Routes>
             <Route path='/' element={<Auth />} />
-            <Route path='/adminlogin' element={<AdminLogin />} />
+            <Route path='/admin-login' element={<AdminLogin />} />
+            <Route path='/user-login' element={<UserLogin />} />
             <Route path='/rider-registration' element={<RiderRegistration />} />
             <Route
               path='/learner-registration'
@@ -33,10 +36,21 @@ function App() {
                 </PrivateRoute>
               }
             />
-            <Route path='/user-dashboard' element={<UserDashboard />} />
+            <Route
+              path='/user-dashboard'
+              element={
+                <PrivateUserRoute>
+                  <UserDashboard />
+                </PrivateUserRoute>
+              }
+            />
             <Route
               path='/user-dashboard/pay/:serviceId'
-              element={<Payment />}
+              element={
+                <PrivateUserRoute>
+                  <Payment />
+                </PrivateUserRoute>
+              }
             />
           </Routes>
         </ContextProvider>

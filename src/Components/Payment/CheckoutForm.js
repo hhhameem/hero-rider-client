@@ -74,7 +74,7 @@ const CheckoutForm = ({ price }) => {
               fontSize: "16px",
               color: "#424770",
               "::placeholder": {
-                color: "#aab7c4",
+                color: "#000000",
               },
             },
             invalid: {
@@ -84,8 +84,17 @@ const CheckoutForm = ({ price }) => {
         }}
       />
       {!clicked && (
-        <button type='submit' disabled={!stripe}>
-          Pay
+        <button
+          type='submit'
+          disabled={!stripe}
+          style={{
+            padding: "5px 10px",
+            border: "1px solid green",
+            backgroundColor: "#42d942",
+            marginTop: "20px",
+          }}
+        >
+          Pay ${price}
         </button>
       )}
     </form>

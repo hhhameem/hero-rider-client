@@ -11,4 +11,22 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+  background-color: #ffffff;
+}
+
+.box-Shadow {
+  border-radius: 10px;
+  box-shadow: -23px 20px 6px -6px rgba(0, 0, 0, 0.1),
+    20px -14px 6px -3px rgba(0, 0, 0, 0.1);
+}
+a {
+  text-decoration: none;
+  color: rgb(15, 13, 13);
+}
+.h4 {
+  border: 1px solid rgb(26, 126, 129);
+  border-radius: 30px;
+  padding: 5px;
+  margin-top: 15px;
+  margin-bottom: 15px;
 }

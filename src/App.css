@@ -3,4 +3,9 @@
 .App {
   text-align: center;
   font-family: "Roboto Slab", serif;
+  background-color: #f3f4f6;
+}
+
+.registration-form {
+  background-color: #ffffff;
 }

@@ -6,7 +6,7 @@ const PrivateRoute = ({ children }) => {
   let location = useLocation();
 
   if (!isLoggedIn) {
-    return <Navigate to='/adminlogin' state={{ from: location }} replace />;
+    return <Navigate to='/admin-login' state={{ from: location }} replace />;
   }
 
   return children;
